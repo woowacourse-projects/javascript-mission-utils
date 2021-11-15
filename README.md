@@ -20,7 +20,7 @@
 
 ```js
 // example
-console.log(MissionUtils.Random.pickOneInArray([1, 2, 3]));
+console.log(MissionUtils.Random.pickNumberInList([1, 2, 3]));
 ```
 
 - 스크립트 태그로 삽입된 경우 전역에 할당되어 `MissionUtils.[util]` 형태로 사용할 수 있습니다.
@@ -30,15 +30,15 @@ console.log(MissionUtils.Random.pickOneInArray([1, 2, 3]));
 1. 모듈 다운로드
 
 ```sh
-npm i mission-utils
+npm i @woowacourse/mission-utils
 ```
 
 2. 모듈 사용하기
 
 ```js
-import MissionUtils from "mission-utils";
+import MissionUtils from "@woowacourse/mission-utils";
 
-console.log(MissionUtils.Random.pickOneInArray([1, 2, 3]));
+console.log(MissionUtils.Random.pickNumberInList([1, 2, 3]));
 ```
 
 ## Features
