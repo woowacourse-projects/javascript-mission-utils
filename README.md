@@ -1,4 +1,5 @@
 # mission-utils
+
 ![npm](https://img.shields.io/npm/v/@woowacourse/mission-utils)
 [![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
 
@@ -35,19 +36,57 @@ npm i @woowacourse/mission-utils
 
 2. 모듈 사용하기
 
+#### ES Modules 방식으로 사용하는 경우
+
 ```js
-import MissionUtils from "@woowacourse/mission-utils";
+import * as MissionUtils from "@woowacourse/mission-utils";
+
+console.log(MissionUtils.Random.pickNumberInList([1, 2, 3]));
+```
+
+#### CommonJS 방식으로 사용하는 경우
+
+```js
+const MissionUtils = require("@woowacourse/mission-utils");
 
 console.log(MissionUtils.Random.pickNumberInList([1, 2, 3]));
 ```
 
 ## Features
 
+### Console
+
+#### `readLine(query, callback)`
+
+주어진 질문을 화면에 출력하고, 사용자가 답변을 입력할 때까지 기다린 다음 입력된 답변을 인수로 전달하는 콜백 함수를 호출한다.
+
+```js
+Console.readLine('닉네임을 입력해주세요.', (answer) => {
+  console.log(`닉네임: ${answer}`);
+});
+```
+
+#### `print(message)`
+
+주어진 문자열을 콘솔에 출력한다.
+
+```js
+Console.print('안녕하세요.');
+```
+
+#### `close()`
+
+`Console`에서 입출력을 제어하기 위해 사용하는 인스턴스를 닫는다.
+
+```js
+Console.close();
+```
+
 ### Random
 
 #### `pickNumberInRange(startInclusive, endInclusive)`
 
-숫자 범위를 지정하면 시작 또는 끝 숫자를 포함하여 범위의 숫자를 반환한다. 
+숫자 범위를 지정하면 시작 또는 끝 숫자를 포함하여 범위의 숫자를 반환한다.
 
 ```js
 Random.pickNumberInRange(1, 10); // 1
@@ -78,10 +117,12 @@ Random.pickUniqueNumbersInRange(1, 10, 5); // [1, 10, 7, 8, 5]
 #### `shuffle(array)`
 
 무작위로 섞인 새 목록을 반환한다.
+
 ```js
 Random.shuffle([1, 2, 3, 4, 5]); // [2, 4, 1, 3, 5]
 ```
 
 ## Contributors
+
 [<img src="https://avatars.githubusercontent.com/u/46412689?v=4" width="50" alt="2SOOY">](https://github.com/2SOOY)
 [<img src="https://avatars.githubusercontent.com/u/42544600?v=4" width="50" alt="zereight">](https://github.com/zereight)

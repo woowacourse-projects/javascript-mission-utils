@@ -1,6 +1,6 @@
 {
   "name": "@woowacourse/mission-utils",
-  "version": "1.0.1",
+  "version": "1.0.6",
   "main": "dist/mission-utils.js",
   "license": "MIT",
   "scripts": {
