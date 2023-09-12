@@ -1,92 +1,115 @@
 import * as MissionUtils from "../src";
 
-describe("Console.print", () => {
-  test("주어진 메시지를 콘솔에 출력해야 한다.", () => {
-    // given
-    const message = "test";
-    const logSpy = jest.spyOn(console, "log");
+describe('Console.print', () => {
+    test('주어진 메시지를 콘솔에 출력해야 한다.', () => {
+        // given
+        const message = 'test';
+        const logSpy = jest.spyOn(console, "log");
 
-    // when
-    MissionUtils.Console.print(message);
+        // when
+        MissionUtils.Console.print(message)
 
-    // then
-    expect(logSpy).toHaveBeenCalledWith(message);
-  });
+        // then
+        expect(logSpy).toHaveBeenCalledWith(message);
+    });
 });
 
-describe("Console.readline", () => {
-  const query = "test";
-  const callback = jest.fn();
+describe('Console.question', () => {
+    const query = "test";
+    const callback = jest.fn();
 
-  test("인자가 2개보다 적게 주어진 경우 예외가 발생해야 한다.", () => {
-    // given
-    // when
-    // then
-    expect(() => {
-      MissionUtils.Console.readLine(query);
-    }).toThrow();
-  });
+    test('인자가 2개보다 적게 주어진 경우 예외가 발생해야 한다.', () => {
+        // given
+        // when
+        // then
+        expect(() => {
+            MissionUtils.Console.readLine(query);
+        }).toThrow();
+    });
 
-  test("인자가 2개보다 많이 주어진 경우 예외가 발생해야 한다.", () => {
-    // given
-    // when
-    // then
-    expect(() => {
-      MissionUtils.Console.readLine(query, callback, 1);
-    }).toThrow();
-  });
+    test('인자가 2개보다 많이 주어진 경우 예외가 발생해야 한다.', () => {
+        // given
+        // when
+        // then
+        expect(() => {
+            MissionUtils.Console.readLine(query, callback, 1);
+        }).toThrow();
+    });
 
-  test("query가 문자열이 아닌 경우 예외가 발생해야 한다.", () => {
-    // given
-    const invalidQuery = 1;
+    test('query가 문자열이 아닌 경우 예외가 발생해야 한다.', () => {
+        // given
+        const invalidQuery = 1;
 
-    // when
-    // then
-    expect(() => {
-      MissionUtils.Console.readLine(invalidQuery, callback);
-    }).toThrow();
-  });
+        // when
+        // then
+        expect(() => {
+            MissionUtils.Console.readLine(invalidQuery, callback);
+        }).toThrow();
+    });
 
-  test("callback이 함수가 아닌 경우 예외가 발생해야 한다.", () => {
-    // given
-    const invalidCallback = "callback";
+    test('callback이 함수가 아닌 경우 예외가 발생해야 한다.', () => {
+        // given
+        const invalidCallback = "callback";
 
-    // when
-    // then
-    expect(() => {
-      MissionUtils.Console.readLine(query, invalidCallback);
-    }).toThrow();
-  });
+        // when
+        // then
+        expect(() => {
+            MissionUtils.Console.readLine(query, invalidCallback);
+        }).toThrow();
+    });
 
-  test("callback에 인자가 1개가 아닌 경우 예외가 발생해야 한다.", () => {
-    // given
-    const invalidCallback = (a, b) => {};
+    test('callback에 인자가 1개가 아닌 경우 예외가 발생해야 한다.', () => {
+        // given
+        const invalidCallback = (a, b) => {};
 
-    // when
-    // then
-    expect(() => {
-      MissionUtils.Console.readLine(query, invalidCallback);
-    }).toThrow();
-  });
+        // when
+        // then
+        expect(() => {
+            MissionUtils.Console.readLine(query, invalidCallback);
+        }).toThrow();
+    });
 });
 
-describe("Console.readlineAsync", () => {
-  const query = "test";
+describe('Console.readlineAsync', () => {
+  const query = 'test';
   const invalidQuery = 1;
 
-  test("인자에 전달된 값이 없는 경우 예외가 발생해야 한다.", () => {
+  test('인자에 전달된 값이 없는 경우 예외가 발생해야 한다.', () => {
     expect(async () => {
       await MissionUtils.Console.readLineAsync();
     }).rejects.toThrow();
   });
 
-  test("인자가 1개보다 많이 주어진 경우 예외가 발생해야 한다.", () => {
+  test('인자가 1개보다 많이 주어진 경우 예외가 발생해야 한다.', () => {
     expect(async () => {
       await MissionUtils.Console.readLineAsync(query, query);
     }).rejects.toThrow();
   });
 
-  test("query가 문자열이 아닌 경우 예외가 발생해야 한다.", () => {
+  test('query가 문자열이 아닌 경우 예외가 발생해야 한다.', () => {
+    expect(async () => {
+      await MissionUtils.Console.readLineAsync(invalidQuery);
+    }).rejects.toThrow();
+  });
+});
+
+describe('Console.readlineAsync', () => {
+  const query = 'test';
+  const invalidQuery = 1;
+
+  test('인자에 전달된 값이 없는 경우 예외가 발생해야 한다.', () => {
+    expect(async () => {
+      await MissionUtils.Console.readLineAsync();
+    }).rejects.toThrow();
+  });
+
+  test('인자가 1개보다 많이 주어진 경우 예외가 발생해야 한다.', () => {
+    expect(async () => {
+      await MissionUtils.Console.readLineAsync(query, query);
+    }).rejects.toThrow();
+  });
+
+  test('query가 문자열이 아닌 경우 예외가 발생해야 한다.', () => {
     expect(async () => {
       await MissionUtils.Console.readLineAsync(invalidQuery);
     }).rejects.toThrow();
