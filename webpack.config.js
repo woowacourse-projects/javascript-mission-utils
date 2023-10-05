@@ -1,18 +1,12 @@
-const path = require("path");
+import path from "path";
+import { fileURLToPath } from "url";
 
-module.exports = {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const config = {
   entry: "./src/index.js",
   target: "node",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "mission-utils.js",
-    library: {
-      name: "MissionUtils",
-      type: "umd",
-    },
-    globalObject: "this",
-    clean: true,
-  },
   resolve: {
     extensions: [".js"],
   },
@@ -25,11 +19,39 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env"],
-            plugins: ["@babel/plugin-proposal-class-properties"],
+            presets: ["@babel/preset-env"]
           },
         },
       },
     ],
   },
 };
+
+export default [
+  // CJS 빌드
+  {
+    ...config,
+    output: {
+      path: path.resolve(__dirname, "dist"),
+      filename: "mission-utils.cjs",
+      library: {
+        type: "commonjs",
+      },
+    },
+  },
+  // ESM 빌드
+  {
+    ...config,
+    output: {
+      path: path.resolve(__dirname, "dist"),
+      filename: "mission-utils.js",
+      library: {
+        type: "module",
+      },
+      chunkFormat: "module",
+    },
+    experiments: {
+      outputModule: true, // ESM 출력 모듈 활성화
+    },
+  },
+];
