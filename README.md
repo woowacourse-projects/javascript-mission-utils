@@ -39,7 +39,7 @@ npm i @woowacourse/mission-utils
 #### ES Modules 방식으로 사용하는 경우
 
 ```js
-import * as MissionUtils from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
 
 console.log(MissionUtils.Random.pickNumberInList([1, 2, 3]));
 ```
