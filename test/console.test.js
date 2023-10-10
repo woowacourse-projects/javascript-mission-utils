@@ -97,7 +97,7 @@ describe('Console.readLineAsync', () => {
       await expect(MissionUtils.Console.readLineAsync(invalidQuery)).rejects.toThrow();
   });
 
-  test('사용자가 입력한 값을 Promise로 반환해야 한다.', async () => {
+  test('사용자가 입력한 값을 반환해야 한다.', async () => {
       // given
       const userInput = "user input";
       const createInterfaceMock = jest.spyOn(readline, "createInterface");
