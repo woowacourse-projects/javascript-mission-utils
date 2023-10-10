@@ -88,14 +88,6 @@ async function getUsername() {
 Console.print('안녕하세요.');
 ```
 
-#### `close()`
-
-`Console`에서 입출력을 제어하기 위해 사용하는 인스턴스를 닫는다.
-
-```js
-Console.close();
-```
-
 ### Random
 
 #### `pickNumberInRange(startInclusive, endInclusive)`
