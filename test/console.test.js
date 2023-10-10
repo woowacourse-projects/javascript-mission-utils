@@ -1,3 +1,4 @@
+import readline from "readline";
 import * as MissionUtils from "../src";
 
 describe('Console.print', () => {
@@ -14,7 +15,7 @@ describe('Console.print', () => {
     });
 });
 
-describe('Console.question', () => {
+describe('Console.readLine', () => {
     const query = "test";
     const callback = jest.fn();
 
@@ -68,4 +69,54 @@ describe('Console.question', () => {
             MissionUtils.Console.readLine(query, invalidCallback);
         }).toThrow();
     });
+});
+
+describe('Console.readLineAsync', () => {
+  const query = "test";
+
+  test('인자가 주어지지 않은 경우 예외가 발생해야 한다.', async () => {
+      // given
+      // when
+      // then
+      await expect(MissionUtils.Console.readLineAsync()).rejects.toThrow();
+  });
+
+  test('인자가 1개보다 많이 주어진 경우 예외가 발생해야 한다.', async () => {
+      // given
+      // when
+      // then
+      await expect(MissionUtils.Console.readLineAsync(query, 1)).rejects.toThrow();
+  });
+
+  test('query가 문자열이 아닌 경우 예외가 발생해야 한다.', async () => {
+      // given
+      const invalidQuery = 1;
+
+      // when
+      // then
+      await expect(MissionUtils.Console.readLineAsync(invalidQuery)).rejects.toThrow();
+  });
+
+  test('사용자가 입력한 값을 반환해야 한다.', async () => {
+      // given
+      const userInput = "user input";
+      const createInterfaceMock = jest.spyOn(readline, "createInterface");
+      const readlineMock = {
+        question: jest.fn((query, callback) => {
+          callback(userInput);
+        }),
+        close: jest.fn(),
+      };
+      createInterfaceMock.mockReturnValue(readlineMock);
+
+      // when
+      const result = await MissionUtils.Console.readLineAsync(query);
+
+      // then
+      expect(result).toBe(userInput);
+      expect(readlineMock.question).toHaveBeenCalledWith(query, expect.any(Function));
+      expect(readlineMock.close).toHaveBeenCalled();
+
+      createInterfaceMock.mockRestore();
+  });
 });

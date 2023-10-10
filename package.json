@@ -1,6 +1,6 @@
 {
   "name": "@woowacourse/mission-utils",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "main": "dist/mission-utils.js",
   "type": "module",
   "exports": {
@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles --watch",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production"
   },
