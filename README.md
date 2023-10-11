@@ -39,7 +39,7 @@ npm i @woowacourse/mission-utils
 #### ES Modules 방식으로 사용하는 경우
 
 ```js
-import * as MissionUtils from "@woowacourse/mission-utils";
+import { MissionUtils } from "@woowacourse/mission-utils";
 
 console.log(MissionUtils.Random.pickNumberInList([1, 2, 3]));
 ```
@@ -66,20 +66,26 @@ Console.readLine('닉네임을 입력해주세요.', (answer) => {
 });
 ```
 
+#### `readLineAsync(query)`
+
+주어진 질문을 화면에 출력하고, 사용자가 입력한 답변을 Promise를 통해 반환한다.
+
+```js
+async function getUsername() {
+  try {
+    const username = await Console.readLineAsync('닉네임을 입력해주세요.');
+  } catch (error) {
+    // reject 되는 경우
+  }
+}
+```
+
 #### `print(message)`
 
 주어진 문자열을 콘솔에 출력한다.
 
 ```js
 Console.print('안녕하세요.');
-```
-
-#### `close()`
-
-`Console`에서 입출력을 제어하기 위해 사용하는 인스턴스를 닫는다.
-
-```js
-Console.close();
 ```
 
 ### Random

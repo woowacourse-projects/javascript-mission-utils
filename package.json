@@ -1,10 +1,17 @@
 {
   "name": "@woowacourse/mission-utils",
-  "version": "2.0.0",
+  "version": "2.1.1",
   "main": "dist/mission-utils.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./dist/mission-utils.cjs",
+      "import": "./dist/mission-utils.js"
+    }
+  },
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles --watch",
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production"
   },
@@ -18,7 +25,6 @@
     "webpack-cli": "^4.8.0"
   },
   "description": "Utility library for mission",
-  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/woowacourse-projects/javascript-mission-utils.git"

@@ -1,4 +1,9 @@
-import Random from "./random";
-import Console from "./console";
+import Random from "./random.js";
+import Console from "./console.js";
 
 export { Random, Console };
+
+export const MissionUtils = {
+  Random,
+  Console,
+};
