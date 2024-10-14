@@ -1,9 +1,11 @@
-import Random from "./random.js";
 import Console from "./console.js";
+import DateTimes from "./DateTimes.js";
+import Random from "./random.js";
 
-export { Random, Console };
+export { Console, DateTimes, Random };
 
 export const MissionUtils = {
-  Random,
   Console,
+  DateTimes,
+  Random,
 };
